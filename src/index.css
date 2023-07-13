@@ -1,0 +1,43 @@
+
+
+/* 
+ * Base Styles
+*/
+
+@font-face {
+    src: url("./assets/fonts/Poppins-Regular.ttf");
+    font-family: "poppins regular";
+}
+
+@font-face {
+    src: url("./assets/fonts/Poppins-Bold.ttf");
+    font-family: "poppins bold";
+}
+
+@font-face {
+    src: url("./assets/fonts/Poppins-ExtraBold.ttf");
+    font-family: "poppins extra bold";
+}
+
+:root {
+    --custom-purple: hsl(259, 100%, 65%);
+    --custom-red: hsl(0, 100%, 67%);
+    --custom-white: hsl(0, 0%, 100%);
+    --custom-off-white: hsl(0, 0%, 94%);
+    --custom-grey: hsl(0, 0%, 86%);
+    --custom-smokey-grey: hsl(0, 1%, 44%);
+    --custom-black: hsl(0, 0%, 8%);
+}
+
+body,
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "poppins regular";
+    background-color: var(--custom-off-white);
+}
+

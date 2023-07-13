@@ -1,0 +1,104 @@
+
+.container {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.app {
+    /* width: 50%; */
+    /* border: 1px solid red; */
+    background-color: var(--custom-white);
+    padding: 80px 40px;
+    border-radius: 50px;
+    border-bottom-right-radius: 30% 30%;
+}
+
+form.form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+}
+
+.form-input-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    color: var(--custom-smokey-grey);
+}
+
+.form-input-field label {
+    font-size: 0.7em;
+}
+
+
+.form-input-field input {
+    font-size: 2rem; /* 32px */
+    font-family: "poppins bold";
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
+    /* border: none; */
+    /* outline: none; */
+    border: 1px solid var(--custom-grey);
+}
+
+.form-input-field input::placeholder {
+    font-size: 0.5em;
+}
+
+.form-input-field input::-webkit-outer-spin-button {
+    /* -mebkit-appearance: none; */
+    appearance: none;
+    margin: 0;
+}
+
+.form-input-field input[type="number"] {
+    /* -moz-appearance: textfield;*/
+    appearance: textfield;
+}
+
+.form-submit {
+    /* border: 1px solid red; */
+    grid-column: span 3;
+    display: flex;
+}
+
+.form-submit .form-submit-demacation {
+    border-bottom: 2px solid var(--custom-grey);
+    flex: 1;
+    align-self: center;
+}
+
+.form-submit-button {
+    display: flex;
+    align-items: center;
+}
+
+.form-submit-demacation {
+
+}
+
+.form-submit-button button {
+    background: var(--custom-purple);
+    border: none;
+    outline: none;
+    width: 80px;
+    aspect-ratio: 1/1;
+    border-radius: 50% 50%;
+}
+.app-outputs {
+    font-family: "poppins extra bold";
+    font-size: 4rem;
+    font-weight: 800;
+}
+.app-outputs .output {
+    color: var(--custom-purple);
+}
+
+.app-outputs .output ~ span {
+    font-style: italic;
+}
