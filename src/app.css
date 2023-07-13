@@ -102,3 +102,10 @@ form.form {
 .app-outputs .output ~ span {
     font-style: italic;
 }
+
+
+@media screen and (min-width: 1024px) {
+    .app {
+        max-width: 800px;
+    }
+}
