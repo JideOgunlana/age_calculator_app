@@ -92,7 +92,7 @@ form.form {
 }
 .app-outputs {
     font-family: "poppins extra bold";
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 800;
 }
 .app-outputs .output {
@@ -104,8 +104,19 @@ form.form {
 }
 
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 560px) {
+
+    .app-outputs {
+        font-size: 4rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
     .app {
         max-width: 800px;
+    }
+
+    .app-outputs {
+        font-size: 5rem;
     }
 }
