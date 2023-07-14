@@ -31,6 +31,8 @@ form.form {
 
 .form-input-field label {
     font-size: 0.7em;
+    font-family: "poppins bold";
+    letter-spacing: 4px;
 }
 
 
@@ -44,6 +46,12 @@ form.form {
     /* border: none; */
     /* outline: none; */
     border: 1px solid var(--custom-grey);
+    cursor: pointer;
+}
+
+.form-input-field input:focus {
+    outline: none;
+    border-color: var(--custom-purple);
 }
 
 .form-input-field input::placeholder {
@@ -60,6 +68,14 @@ form.form {
     /* -moz-appearance: textfield;*/
     appearance: textfield;
 }
+
+.form-input-field span {
+    visibility: hidden;
+    font-size: 0.7rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
 
 .form-submit {
     /* border: 1px solid red; */
@@ -78,18 +94,24 @@ form.form {
     align-items: center;
 }
 
-.form-submit-demacation {
+/* .form-submit-demacation {
 
 }
-
+ */
 .form-submit-button button {
-    background: var(--custom-purple);
+    background-color: var(--custom-purple);
     border: none;
     outline: none;
     width: 80px;
     aspect-ratio: 1/1;
     border-radius: 50% 50%;
+    cursor: pointer;
 }
+
+.form-submit-button button:hover {
+    background-color: var(--custom-black);
+}
+
 .app-outputs {
     font-family: "poppins extra bold";
     font-size: 2.5rem;
@@ -104,19 +126,44 @@ form.form {
 }
 
 
-@media screen and (min-width: 560px) {
+/* 
+    States of the input fields
+*/
+
+.invalid-input-fields label {
+    color: var(--custom-red)
+}
+
+.invalid-input-fields input {
+    border-color: var(--custom-red);
+}
+
+.invalid-input-fields span.form-input-error-text {
+    visibility: visible;
+    color: var(--custom-red)
+}
+
+/* 
+    Break points for tablet and desktop
+*/
+@media screen and (min-width: 580px) {
 
     .app-outputs {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width:1024px) {
+
+    .form-submit-button {
+        order: 1;
+    }
+
     .app {
         max-width: 800px;
     }
 
     .app-outputs {
-        font-size: 5rem;
+        font-size: 5.5rem;
     }
 }

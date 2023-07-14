@@ -10,17 +10,27 @@ const App = () => {
         months: undefined,
         years: undefined
     });
+    const [allFieldsValid, setAllFieldsValid] = useState(true);
 
     const handleFormSubmission = (e: any) => {
-        // console.log(e);
+
         e.preventDefault();
+        
         const formData = new FormData(e.target);
-        // console.log(formData); // converts formData to plain text in object format
+        //console.log(formData); // converts formData to plain text in object format
         const {day, month, year} = Object.fromEntries(formData);
 
+        // console.log(day, month, year);
+        if (!day && !month && !year)
+            setAllFieldsValid(false);
+        else
+            setAllFieldsValid(true);
+        
         let elapsedYears = 0;
         let elapsedMonths = 0;
         let elapsedDays = 0;
+        // console.log(elapsedDays, elapsedMonths, elapsedYears);
+
 
         const start = new Date(`${year}-${month}-${day}`);
         const end = new Date();
@@ -60,17 +70,20 @@ return (
 
                     className="form"
                 >
-                    <div className="form-input-field">
+                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="day">DAY</label>
                         <input name="day" type="number" placeholder="DD" />
+                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
                     </div>
-                    <div className="form-input-field">
+                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="month">MONTH</label>
                         <input name="month" type="number" placeholder="MM" />
+                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
                     </div>
-                    <div className="form-input-field">
+                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="year">YEAR</label>
                         <input name="year" type="number" placeholder="YYYY" />
+                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
                     </div>
                     <div className="form-submit">
                         <div className="form-submit-demacation"></div>
