@@ -70,7 +70,7 @@ form.form {
 }
 
 .form-input-field span {
-    visibility: hidden;
+    display: none;
     font-size: 0.7rem;
     font-weight: 400;
     font-style: italic;
@@ -138,10 +138,17 @@ form.form {
     border-color: var(--custom-red);
 }
 
-.invalid-input-fields span.form-input-error-text {
-    visibility: visible;
+.invalid-input-fields span.input-error-general-text,
+.invalid-input-fields span.input-error-year-text,
+.invalid-input-fields span.input-error-month-text,
+.invalid-input-fields span.input-error-day-text
+{
+    display: block;
     color: var(--custom-red)
 }
+
+
+
 
 /* 
     Break points for tablet and desktop

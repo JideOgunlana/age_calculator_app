@@ -10,7 +10,10 @@ const App = () => {
         months: undefined,
         years: undefined
     });
-    const [allFieldsValid, setAllFieldsValid] = useState(true);
+    const [allFieldsNotEmpty, setAllFieldsNotEmpty] = useState(true);
+    const [yearField, setYearField] = useState(true);
+    const [monthField, setMonthField] = useState(true);
+    const [dayField, setDayField] = useState(true);
 
     const handleFormSubmission = (e: any) => {
 
@@ -22,9 +25,9 @@ const App = () => {
 
         // console.log(day, month, year);
         if (!day && !month && !year)
-            setAllFieldsValid(false);
+            setAllFieldsNotEmpty(false);
         else
-            setAllFieldsValid(true);
+            setAllFieldsNotEmpty(true);
         
         let elapsedYears = 0;
         let elapsedMonths = 0;
@@ -34,11 +37,41 @@ const App = () => {
 
         const start = new Date(`${year}-${month}-${day}`);
         const end = new Date();
+        if (isNaN(start.getDay()) && day !== "" && month !== "" && year !== "") {
+            if (Number(year) - end.getFullYear() > 0) {
+                setYearField(false);
+            }
+            else {
+                setYearField(true);
+            }
+            if (Number(month) > 12 || Number(month) < 1) {
+                setMonthField(false);
+            }
+            else {
+                setMonthField(true);
+            }
+            if (yearField || monthField) {
+                setDayField(false);
+            }
+            setElapsed({ 
+                days: undefined,
+                months: undefined,
+                years: undefined 
+            })
+            return ;
+        }
         
         const millisecondsPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
         
         const differenceInTime = end.getTime() - start.getTime(); // Difference in milliseconds
         let differenceInDays = Math.floor(differenceInTime / millisecondsPerDay); // Difference in days
+        if (differenceInDays < 0) {
+            setYearField(false);
+            return;
+        }
+        setYearField(true);
+        setMonthField(true);
+        setDayField(true);
         // console.log("Days " + differenceInDays);
 
         if (differenceInDays >= 365) {
@@ -53,6 +86,7 @@ const App = () => {
         
         elapsedDays = differenceInDays;
         // console.log(`The difference is ${elapsedYears} years, ${elapsedMonths} months, and ${elapsedDays} days.`);
+
         setElapsed({ 
             days: elapsedDays,
             months: elapsedMonths,
@@ -70,20 +104,23 @@ return (
 
                     className="form"
                 >
-                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
+                    <div className={allFieldsNotEmpty && dayField ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="day">DAY</label>
                         <input name="day" type="number" placeholder="DD" />
-                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
+                        <span className={dayField ? "" : "input-error-day-text"} >Must be a valid day</span>
+                        <span className={allFieldsNotEmpty ? "": "input-error-general-text"}>This field is required</span>
                     </div>
-                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
+                    <div className={allFieldsNotEmpty && monthField ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="month">MONTH</label>
                         <input name="month" type="number" placeholder="MM" />
-                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
+                        <span className={monthField ? "" : "input-error-month-text"} >Must be a valid month</span>
+                        <span className={allFieldsNotEmpty ? "": "input-error-general-text"}>This field is required</span>
                     </div>
-                    <div className={allFieldsValid ? `form-input-field`: `form-input-field invalid-input-fields`}>
+                    <div className={allFieldsNotEmpty && yearField ? `form-input-field`: `form-input-field invalid-input-fields`}>
                         <label htmlFor="year">YEAR</label>
                         <input name="year" type="number" placeholder="YYYY" />
-                        <span className={allFieldsValid ? "": "form-input-error-text"}>This field is required</span>
+                        <span className={yearField ? "" : "input-error-year-text"} >Must be in the past</span>
+                        <span className={allFieldsNotEmpty ? "": "input-error-general-text"}>This field is required</span>
                     </div>
                     <div className="form-submit">
                         <div className="form-submit-demacation"></div>
