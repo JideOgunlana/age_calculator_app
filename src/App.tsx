@@ -46,6 +46,8 @@ const App = () => {
             }
             if (Number(month) > 12 || Number(month) < 1) {
                 setMonthField(false);
+                if (Number(day) >= 1 && Number(day) <= 31)
+                    return;
             }
             else {
                 setMonthField(true);
@@ -58,7 +60,7 @@ const App = () => {
                 months: undefined,
                 years: undefined 
             })
-            return ;
+            return;
         }
         
         const millisecondsPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
